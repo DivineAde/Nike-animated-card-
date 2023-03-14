@@ -17,6 +17,10 @@ export const Container = styled.div`
   place-items: center;
   cursor: pointer;
   perspective: 2000;
+
+  @media (max-width: 375px) {
+    display: flex;
+  }
 `;
 
 export const CardWrapper = styled(motion.div)`
