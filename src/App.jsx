@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardWrapper,
@@ -18,8 +18,10 @@ import Shoe_1 from "./assets/nike-adapt-bb.png";
 import Shoe_2 from "./assets/nike-air-red.png";
 import CardBottomContent from "./Components/CardBottomContent";
 import { useMotionValue, useTransform } from "framer-motion";
+import Preloader from "./Components/Preloader";
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
   const [currentColor, setCurrentColor] = useState(1);
 
   const x = useMotionValue(0);
@@ -27,6 +29,13 @@ const App = () => {
 
   const rotateX = useTransform(y, [-100, 100], [30, -30]);
   const rotateY = useTransform(x, [-100, 100], [30, -30]);
+
+  useEffect(() => {
+    // Simulate a delay to demonstrate the preloader
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  }, []);
 
   // show animate
   const varients = {
@@ -46,7 +55,11 @@ const App = () => {
     },
   };
   return (
-    <Wrapper>
+    <>
+    {loading ? (
+        <Preloader />
+      ) : (
+     <Wrapper>
       <Container>
         <CardWrapper
           style={{ x, y, rotateX, rotateY, z: 100 }}
@@ -99,6 +112,8 @@ const App = () => {
         </CardWrapper>
       </Container>
     </Wrapper>
+  )}
+    </>
   );
 };
 

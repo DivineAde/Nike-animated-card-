@@ -12,6 +12,7 @@ import {
   Star,
   Title,
 } from "../styled";
+import Preloader from "./Preloader";
 
 const CardBottomContent = ({ currentColor, setCurrentColor }) => {
   return (
